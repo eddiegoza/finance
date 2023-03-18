@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <h2>Buy</h2>
+    <form action="/buy", method="post">
+        <select name ="symbol">
+            {% for symbol in symbols %}
+            <option> {{ symbol["symbol"] }} </option>
+            {% endfor %}
+        </select>
+        <input autocomplete="off" autofocus name="shares" placeholder="Enter shares" type="number" min="1">
+        <button class="btn btn-primary" type="submit">BUY</button>
+    </form>
+{% endblock %}

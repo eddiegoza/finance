@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Summary
+{% endblock %}
+
+{% block main %}
+    <h2>Your Summary</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Shares</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction["symbol"] }}</td>
+                <td>{{ transaction["name"] }}</td>
+                <td>{{ usd(transaction["price"]) }}</td>
+                <td>{{ transaction["totalshares"] }}</td>
+                <td>{{ usd(transaction["price"] * transaction["totalshares"]) }}</td>
+            </tr>
+            {% endfor%}
+            <tr>
+                <td>CASH</td>
+                <td colspan="3"></td>
+                <td>{{ usd(cash) }}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <td colspan="4"></td>
+            <td>{{ total }}</td>
+        </tfoot>
+    </table>
+{% endblock %}
